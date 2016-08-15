@@ -1,0 +1,6 @@
+name=baas-test
+region=ams2
+version=14.04
+image=ubuntu-$version-x64
+sshKey=11:5f:d1:ac:88:47:ed:f6:02:e9:f0:a2:7b:8d:73:73
+doctl compute droplet create $name --size 1gb --image $image --region $region --ssh-keys $sshKey
