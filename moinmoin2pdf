@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Convert a moinmoin wiki page to PDF, given the URL to the page
+#
+# Author: Petter Reinholdtsen
+# Date:   2006-05-07
+
+set -e
+set -x
+
+if [ -z "$2" ] ; then
+    echo "Usage: $0 <url> <pdfname>"
+    exit 1
+fi
+
+url="$1"
+pdfname="$2"
+
+tmpfile="`tempfile -s .xml`"
+tmpfile=$(basename $pdfname .pdf).xml
+
+GET "$url?action=format&mimetype=xml/docbook" | sed "s%</%\n</%g" > "$tmpfile"
+dblatex -T simple -o "$pdfname" "$tmpfile"
+rm "$tmpfile"
+
+# It might be necessary to edit the .tex file to handle some special
+# characters in the literallayout environment.  Tip from "Jeffrey
+# B. Green" <jeff@kikisoso.org>
+#   sed -e \
+#   's/\(\\begin{Verbatim}\)\[,fontfamily=default\]/\1[fontfamily=cmtt]/' \
+#   < casestudy.tex > casestudy.sav
+
+# Sjekk casestudy.xsl fra samme kilde
