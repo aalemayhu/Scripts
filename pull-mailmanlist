@@ -1,0 +1,9 @@
+for f in $(lynx -dump -listonly $1 | grep txt.gz | awk ' { print $2} ')
+do
+  wget -r -np -N $f &
+done
+
+echo "When download is done you can merge the files:"
+echo "gunzip -d *.gz"
+echo "cat *.txt > inbox"
+echo "rm *.txt"
