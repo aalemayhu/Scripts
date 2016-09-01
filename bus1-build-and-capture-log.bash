@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Starting with clean"
+
+make clean
+
 branch=`git rev-parse --abbrev-ref HEAD`
 echo Using $branch
 
