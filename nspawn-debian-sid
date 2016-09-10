@@ -1,0 +1,3 @@
+#!/bin/sh
+debootstrap --arch i386 sid sid/ http://ftp.no.debian.org/debian/
+systemd-nspawn -bD sid
