@@ -7,4 +7,3 @@ sudo make modules_install
 sudo make install
 echo "sudo grub2-mkconfig  -o /boot/grub2/grub.cfg"
 echo "or sudo grub2-mkconfig  -o /boot/efi/EFI/fedora/grub.cfg"
-
