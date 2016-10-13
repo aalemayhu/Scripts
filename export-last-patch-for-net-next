@@ -1,0 +1,9 @@
+#!/bin/sh
+
+patch_dir=$HOME/Dropbox/outgoing/net-next
+
+mkdir -p $patch_dir
+git format-patch --subject-prefix='PATCH next-next' HEAD^1 -o $patch_dir
+
+echo "Remember to run (kernel/scripts/get_maintainer.pl) for recipients to your patch"
+echo "Check your patch for obvious issues (kernel/scripts/checkpatch.pl), but you know that ;)"
