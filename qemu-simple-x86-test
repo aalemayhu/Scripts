@@ -1,0 +1,21 @@
+#!/bin/bash
+
+kernel_dir=~/src/github.com/scanf/linux
+qemu_cmd=~/Scripts/qemu-cmd.sh 
+bzImage=$kernel_dir/arch/x86/boot/bzImage
+rootfs=~/Dropbox/Kernel/buildroot/x86/rootfs.cpio
+archive=Dropbox/kernel/bzImage/x86
+cores=`cat /proc/cpuinfo |grep 'cpu cores'|sort -u|awk '{print $4}'`
+
+cd $kernel_dir
+rm .config
+make clean
+make x86_64_defconfig
+make -j$cores
+
+# Make backup
+mkdir -p $archive
+cp $bzImage $archive
+
+# boot
+$qemu_cmd $bzImage $rootfs
