@@ -1,6 +1,6 @@
 #!/bin/sh
 
-patch_dir=$HOME/Dropbox/outgoing/net-next
+patch_dir=$HOME/Dropbox/Patches/outgoing/net-next
 
 mkdir -p $patch_dir
 git format-patch --subject-prefix='PATCH net-next' HEAD^1 -o $patch_dir
