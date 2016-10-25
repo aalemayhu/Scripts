@@ -3,8 +3,9 @@
 kernel_dir=~/src/github.com/scanf/linux
 qemu_cmd=~/Scripts/qemu-cmd.sh 
 bzImage=$kernel_dir/arch/x86/boot/bzImage
-rootfs=~/Dropbox/Kernel/buildroot/x86/rootfs.cpio
-archive=Dropbox/kernel/bzImage/x86
+dropbox_dir=~/Dropbox/Kernel/
+rootfs=$dropbox_dir/buildroot/x86/rootfs.cpio
+archive=$dropbox_dir/bzImage/x86
 cores=`cat /proc/cpuinfo |grep 'cpu cores'|sort -u|awk '{print $4}'`
 
 cd $kernel_dir
