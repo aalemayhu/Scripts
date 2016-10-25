@@ -1,6 +1,6 @@
 #!/bin/sh
 
-patch_dir=$HOME/Dropbox/Patches/outgoing
+patch_dir=$HOME/Dropbox/src/Patches/outgoing
 
 mkdir -p $patch_dir
 git format-patch -M HEAD^1 -o $patch_dir
