@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sh autogen.sh
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure
+make
