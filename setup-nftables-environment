@@ -1,0 +1,10 @@
+#!/bin/bash
+
+src=~/src/netfilter
+mkdir $src
+cd $src
+
+for project in libmnl libnftnl nftables
+do
+  git clone git://git.netfilter.org/$project
+done
