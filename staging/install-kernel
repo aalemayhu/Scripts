@@ -5,6 +5,10 @@ make -j`grep -Pc '^processor\t' /proc/cpuinfo`
 make modules
 sudo make modules_install
 sudo make install
+
+if [ -f /etc/fedora-release ]; then
+  sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+else
+  echo "sudo grub2-mkconfig  -o /boot/grub2/grub.cfg"
+fi
 echo "Maybe you also want to?\nsudo make headers_install INSTALL_HDR_PATH=/usr"
-echo "sudo grub2-mkconfig  -o /boot/grub2/grub.cfg"
-echo "or sudo grub2-mkconfig  -o /boot/efi/EFI/fedora/grub.cfg"
