@@ -5,7 +5,7 @@ if [ -f /etc/fedora-release ]; then
   dnf upgrade -y
   dnf clean
   dnf autoremove
-elif [ -f /etc/debian-release ]; then
+elif [ -f /etc/debian-release ] || command -v apt-get > /dev/null; then
   apt-get update
   apt-get upgrade -y
   apt-get dist-upgrade -y
