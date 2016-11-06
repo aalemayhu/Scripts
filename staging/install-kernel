@@ -1,7 +1,7 @@
 #!/bin/sh
 make clean
 make localmodconfig
-make -j$1
+make -j`grep -Pc '^processor\t' /proc/cpuinfo`
 make modules
 sudo make modules_install
 sudo make install
