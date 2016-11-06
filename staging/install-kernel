@@ -1,4 +1,8 @@
 #!/bin/sh
+
+set -x
+set -e
+
 make clean
 make localmodconfig
 make -j`grep -Pc '^processor\t' /proc/cpuinfo`
