@@ -3,6 +3,12 @@
 set -x
 set -e
 
+if [ ! -f Kconfig ]; then
+    echo "fatal: did not detect Kconfig"
+    echo "Please running top level of kernel directory!"
+    exit
+fi
+
 make clean
 make localmodconfig
 make -j`grep -Pc '^processor\t' /proc/cpuinfo`
