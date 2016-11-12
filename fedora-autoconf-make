@@ -3,7 +3,8 @@
 build() {
   sh autogen.sh
   PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure
-  make
+  make clean
+  make -j`grep -Pc '^processor\t' /proc/cpuinfo`
 }
 
 build
