@@ -4,7 +4,7 @@ set -x
 set -e
 
 src=~/src/netfilter
-mkdir $src
+mkdir -pv $src
 cd $src
 
 for project in libmnl libnftnl nftables
