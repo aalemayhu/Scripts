@@ -5,7 +5,7 @@ set -e
 
 if [ ! -f Kconfig ]; then
     echo "fatal: did not detect Kconfig"
-    echo "Please running top level of kernel directory!"
+    echo "Please run in the top level kernel directory!"
     exit
 fi
 
