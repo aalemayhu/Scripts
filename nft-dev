@@ -23,6 +23,7 @@ do
     make clean
     make
     sudo make install
+    sudo ldconfig
     cd $src
   else
     git clone git://git.netfilter.org/$project
