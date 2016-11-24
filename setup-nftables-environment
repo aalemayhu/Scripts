@@ -13,7 +13,15 @@ do
     git -C $project fetch --all
     git -C $project pull
     cd $project
-    . ~/Scripts/fedora-autoconf-make
+    sh autogen.sh
+    if [[ $project == "libnftnl" ]]
+    then
+      ./configure --with-json-parsing
+    else
+      ./configure
+    fi
+    make clean
+    make
     cd $src
   else
     git clone git://git.netfilter.org/$project
