@@ -9,10 +9,18 @@ if [ ! -f Kconfig ]; then
     exit
 fi
 
-make clean
-make localmodconfig
-make -j`grep -Pc '^processor\t' /proc/cpuinfo`
-make modules
+if [[ "install" == $1 ]]; then
+  echo skipping build
+else
+  make clean
+  make localmodconfig
+  make -j`grep -Pc '^processor\t' /proc/cpuinfo`
+  make modules
+fi
+
+if [[ "build" == $1 ]]; then
+  echo skipping install
+else
 sudo make modules_install
 sudo make install
 
@@ -22,3 +30,4 @@ else
   echo "sudo grub2-mkconfig  -o /boot/grub2/grub.cfg"
 fi
 echo "Maybe you also want to?\nsudo make headers_install INSTALL_HDR_PATH=/usr"
+fi
