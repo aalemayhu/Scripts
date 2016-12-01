@@ -4,9 +4,9 @@ set -x
 set -e
 
 if [ ! -f Kconfig ]; then
-    echo "fatal: did not detect Kconfig"
-    echo "Please run in the top level kernel directory!"
-    exit
+  echo "fatal: did not detect Kconfig"
+  echo "Please run in the top level kernel directory!"
+  exit
 fi
 
 if [[ "install" == $1 ]]; then
@@ -21,13 +21,13 @@ fi
 if [[ "build" == $1 ]]; then
   echo skipping install
 else
-sudo make modules_install
-sudo make install
+  sudo make modules_install
+  sudo make install
 
-if [ -f /etc/fedora-release ]; then
-  sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-else
-  echo "sudo grub2-mkconfig  -o /boot/grub2/grub.cfg"
-fi
-echo "Maybe you also want to?\nsudo make headers_install INSTALL_HDR_PATH=/usr"
+  if [ -f /etc/fedora-release ]; then
+    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+  else
+    echo "sudo grub2-mkconfig  -o /boot/grub2/grub.cfg"
+  fi
+  echo "Maybe you also want to?\nsudo make headers_install INSTALL_HDR_PATH=/usr"
 fi
