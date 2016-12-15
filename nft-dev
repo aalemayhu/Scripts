@@ -1,6 +1,10 @@
 #!/bin/bash
 
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export DBLATEX=no
+export DOCBOOK2X_MAN=no
+export DOCBOOK2MAN=no
+export DB2X_DOCBOOK2MAN=no
 
 set -x
 set -e
