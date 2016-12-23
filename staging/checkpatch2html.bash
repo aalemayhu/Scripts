@@ -4,7 +4,7 @@ output=`mktemp --suffix=.html`
 echo "Writing to $output"
 
 echo "<h1>checkpatch.pl output</h1>" >> $output
-for file in `find . -name *.c`;
+for file in `find . -name '*.c'`;
 do
   echo "<h2>$file</h2>" >> $output
   echo "<div><code>" >> $output
