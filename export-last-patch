@@ -1,0 +1,14 @@
+#!/bin/sh
+
+kernel_dir=$HOME/src/github.com/scanf/linux
+patch_dir=$HOME/Dropbox/src/Patches/outgoing
+
+mkdir -p $patch_dir
+format_patch=`git format-patch -M HEAD^1 -o $patch_dir`
+
+echo MAINTAINER INFO
+$kernel_dir/scripts/get_maintainer.pl $format_patch
+echo
+
+echo CHECKPATCH
+$kernel_dir/scripts/checkpatch.pl --terse $format_patch
