@@ -12,7 +12,6 @@ else
   format_patch=`git format-patch -M HEAD^1 -o $patch_dir`
 fi
 
-
 echo $format_patch
 
 echo MAINTAINER INFO
