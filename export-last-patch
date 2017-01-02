@@ -2,14 +2,14 @@
 
 prefix="$@"
 kernel_dir=$HOME/src/github.com/scanf/linux
-patch_dir="$HOME/Dropbox/src/Patches/outgoing/$prefix"
+patch_dir="$HOME/src/github.com/scanf/queue/$prefix"
 
 mkdir -p $patch_dir
 
 if [ -n "$1" ]; then
-format_patch=`git format-patch --subject-prefix="PATCH $prefix" HEAD^1 -o $patch_dir`
+  format_patch=`git format-patch --subject-prefix="PATCH $prefix" HEAD^1 -o $patch_dir`
 else
-format_patch=`git format-patch -M HEAD^1 -o $patch_dir`
+  format_patch=`git format-patch -M HEAD^1 -o $patch_dir`
 fi
 
 
