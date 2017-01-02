@@ -20,3 +20,7 @@ echo
 
 echo CHECKPATCH
 $kernel_dir/scripts/checkpatch.pl --terse $format_patch
+
+echo GIT
+git -C $patch_dir add .
+git -C $patch_dir commit -s -m "`basename $format_patch`"
