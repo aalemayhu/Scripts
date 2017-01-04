@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ -f /etc/fedora-release ]; then
-  dnf update -y
-  dnf upgrade -y
+  dnf -y update
+  dnf -y upgrade
   dnf clean packages
   dnf autoremove
 elif [ -f /etc/debian-release ] || command -v apt-get > /dev/null; then
