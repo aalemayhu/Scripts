@@ -3,11 +3,16 @@
 set -x
 set -e
 
-if [ ! -f Kconfig ]; then
-  echo "fatal: did not detect Kconfig"
-  echo "Please run in the top level kernel directory!"
-  exit
-fi
+check_for()
+{
+  if [ ! -f $1 ]; then
+    echo "fatal: did not detect $1"
+    echo "Please run in the top level kernel directory!"
+    exit
+  fi
+}
+
+check_for Kconfig
 
 if [[ "install" == $1 ]]; then
   echo skipping build
@@ -15,6 +20,7 @@ else
   make clean
   echo "INFO: expecting only one config file in /boot/"
   cp /boot/config-*.x86_64 .config
+  check_for .config
   make olddefconfig
   make -j`grep -Pc '^processor\t' /proc/cpuinfo`
   make modules
