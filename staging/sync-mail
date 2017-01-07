@@ -1,4 +1,0 @@
-#!/bin/sh
-
-mkdir -p $HOME/Mail/
-rsync -avz -e ssh a@alemayhu.com:Mail $HOME/Mail/

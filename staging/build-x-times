@@ -1,9 +1,0 @@
-output=`mktemp --suffix=.txt`
-
-echo "Will redirect output to $output"
-
-x=$1
-for i in `seq 1 $x`
-do
-  make tt 2>> $output
-done

@@ -1,8 +1,0 @@
-
-for script in `find ../linux/scripts/coccinelle/ -name *.cocci`
-do
-  echo START $script
-  echo "COMMAND=spatch --sp-file $script --no-includes --dir $1"
-  spatch --sp-file $script --no-includes --dir $1
-  echo END $script
-done
