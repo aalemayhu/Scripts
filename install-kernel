@@ -19,7 +19,6 @@ if [[ "install" == $1 ]]; then
 else
   make clean
   echo "INFO: expecting only one config file in /boot/"
-  cp /boot/config-*.x86_64 .config
   check_for .config
   make olddefconfig
   make -j`grep -Pc '^processor\t' /proc/cpuinfo`
