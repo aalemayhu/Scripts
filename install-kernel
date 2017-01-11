@@ -21,7 +21,7 @@ else
   echo "INFO: expecting only one config file in /boot/"
   check_for .config
   make olddefconfig
-  make -j`grep -Pc '^processor\t' /proc/cpuinfo`
+  make W=123 -j`grep -Pc '^processor\t' /proc/cpuinfo`
   make modules
 fi
 
