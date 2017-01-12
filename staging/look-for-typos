@@ -1,2 +1,3 @@
+#!/bin/bash
 ending=$1 # .h or .c please
 for f in `find . -name *.$ending`; do vim $f +:'set spell' +:1; done

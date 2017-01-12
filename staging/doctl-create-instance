@@ -1,3 +1,5 @@
+#!/bin/bash
+
 name=baas-test
 region=ams2
 version=14.04
