@@ -18,3 +18,9 @@ rm -rvf /lib/modules/*$KERNEL_VERSION
 
 cd /usr/src/kernels/linux-$KERNEL_VERSION
 make clean
+
+if [ -f /etc/fedora-release ]; then
+  grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+else
+  update-grub
+fi
