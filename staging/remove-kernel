@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -x
+set -e
+
+KERNEL_VERSION=$1
+
+if [ "$KERNEL_VERSION" == "" ] ; then
+  echo "please supply a kernel version, e.g. 4.9.0"
+  exit
+fi
+
+ls /boot/
+rm /boot/*$KERNEL_VERSION*
+
+ls /lib/modules
+rm -rvf /lib/modules/*$KERNEL_VERSION
+
+cd /usr/src/kernels/linux-$KERNEL_VERSION
+make clean
