@@ -3,6 +3,20 @@
 set -x
 set -e
 
+usage()
+{
+  echo "linux-dev - small script to help with common kernel tasks"
+  echo
+  echo "|------------------+-------------------------------------------------|"
+  echo "| arg              |                                                 |"
+  echo "|------------------+-------------------------------------------------|"
+  echo "|                  | No argument equals build and install the kernel |"
+  echo "| build            | Only build the kernel                           |"
+  echo "| install          | Only install the kernel.                        |"
+  echo "| remove <VERSION> | Clean up a previously installed kernel.         |"
+  echo "|------------------+-------------------------------------------------|"
+}
+
 check_for()
 {
   if [ ! -f $1 ]; then
@@ -60,6 +74,11 @@ update_grub()
 
 if [[ "remove" == $1 ]]; then
   uninstall_kernel $2
+elif [[ "help" == $1 ]] || [[ "?" == $1 ]] ; then
+  set +x
+  set +e
+  usage
+  exit
 else
   check_for Kconfig
 
