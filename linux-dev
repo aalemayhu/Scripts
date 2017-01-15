@@ -12,29 +12,45 @@ check_for()
   fi
 }
 
-check_for Kconfig
-
-if [[ "install" == $1 ]]; then
-  echo skipping build
-else
-  make clean
-  echo "INFO: expecting only one config file in /boot/"
-  check_for .config
-  make olddefconfig
-  make -j`grep -Pc '^processor\t' /proc/cpuinfo`
-  make modules
-fi
-
-if [[ "build" == $1 ]]; then
-  echo skipping install
-else
-  sudo make modules_install
-  sudo make install
-
-  if [ -f /etc/fedora-release ]; then
-    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-  else
-    echo "sudo grub2-mkconfig  -o /boot/grub2/grub.cfg"
+if [[ "remove" == $1 ]]; then
+  KERNEL_VERSION=$2
+  if [ "$KERNEL_VERSION" == "" ] ; then
+    echo "please supply a kernel version, e.g. 4.9.0 or any of the other ones in:"
+    ls /boot/vmlinuz-*
+    exit
   fi
-  echo "Maybe you also want to?\nsudo make headers_install INSTALL_HDR_PATH=/usr"
+  rm /boot/*$KERNEL_VERSION*
+  rm -rvf /lib/modules/*$KERNEL_VERSION
+  cd /usr/src/kernels/linux-$KERNEL_VERSION
+  make clean
+  #  rm -rvf /usr/src/kernels/linux-$KERNEL_VERSION
+else
+  check_for Kconfig
+
+  if [[ "install" == $1 ]]; then
+    echo skipping build
+  else
+    make clean
+    echo "INFO: expecting only one config file in /boot/"
+    check_for .config
+    make olddefconfig
+    make -j`grep -Pc '^processor\t' /proc/cpuinfo`
+    make modules
+  fi
+
+  if [[ "build" == $1 ]]; then
+    echo skipping install
+  else
+    sudo make modules_install
+    sudo make install
+  fi
 fi
+
+if [ -f /etc/fedora-release ]; then
+  sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+elif [ -f /etc/debian-release ]; then
+  sudo update-grub
+else
+  echo "You might want to update the grub configuration!"
+fi
+echo "Maybe you also want to?\nsudo make headers_install INSTALL_HDR_PATH=/usr"
