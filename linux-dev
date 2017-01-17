@@ -72,8 +72,22 @@ update_grub()
   fi
 }
 
+upstream_reset()
+{
+  git fetch --all
+  git push --tags
+
+  git stash
+  git checkout master
+  git reset --hard upstream/master
+  git push origin master
+}
+
 if [[ "remove" == $1 ]]; then
   uninstall_kernel $2
+elif [[ "upstream" == $1 ]]; then
+  upstream_reset
+  exit
 elif [[ "help" == $1 ]] || [[ "?" == $1 ]] ; then
   set +x
   set +e

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-git fetch --all
-git push --tags
-
-git stash
-git checkout master
-git reset --hard upstream/master
-git push origin master

@@ -4,4 +4,4 @@ xrandr --output eDP-1 --off
 xbindkeys
 xscreensaver &
 cd ~/linux/
-~/Scripts/upstream-reset
+~/Scripts/linux-dev upstream
