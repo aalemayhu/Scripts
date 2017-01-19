@@ -83,6 +83,18 @@ upstream_reset()
   git push origin master
 }
 
+checkpatch()
+{
+  for file in `find . -name '*.c'`;
+  do
+    $HOME/linux/scripts/checkpatch.pl --file --terse $file
+  done
+  for file in `find . -name '*.h'`;
+  do
+    $HOME/linux/scripts/checkpatch.pl --file --terse $file
+  done
+}
+
 if [[ "remove" == $1 ]]; then
   uninstall_kernel $2
 elif [[ "upstream" == $1 ]]; then
@@ -93,6 +105,8 @@ elif [[ "help" == $1 ]] || [[ "?" == $1 ]] ; then
   set +e
   usage
   exit
+elif [[ "checkpatch" == $1 ]]; then
+  checkpatch
 else
   check_for Kconfig
 
