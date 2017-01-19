@@ -86,6 +86,8 @@ upstream_reset()
 
 checkpatch()
 {
+  set +x
+  set +e
   for file in `find . -name '*.c'`;
   do
     $HOME/linux/scripts/checkpatch.pl --file --terse $file
@@ -108,6 +110,7 @@ elif [[ "help" == $1 ]] || [[ "?" == $1 ]] ; then
   exit
 elif [[ "checkpatch" == $1 ]]; then
   checkpatch
+  exit
 else
   check_for Kconfig
 
