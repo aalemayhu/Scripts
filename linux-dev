@@ -14,6 +14,7 @@ usage()
   echo "| build            | Only build the kernel                           |"
   echo "| install          | Only install the kernel.                        |"
   echo "| remove <VERSION> | Clean up a previously installed kernel.         |"
+  echo "| checkpatch       | Run checkpatch.pl on *.{c, h} files in dir      |"
   echo "|------------------+-------------------------------------------------|"
 }
 
