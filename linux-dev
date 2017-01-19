@@ -55,8 +55,8 @@ uninstall_kernel()
     ls /boot/vmlinuz-*
     exit
   fi
-  rm /boot/*$KERNEL_VERSION*
-  rm -rvf /lib/modules/*$KERNEL_VERSION
+  sudo rm /boot/*$KERNEL_VERSION*
+  sudo rm -rvf /lib/modules/*$KERNEL_VERSION
   # cd /usr/src/kernels/linux-$KERNEL_VERSION
   # make clean
   #  rm -rvf /usr/src/kernels/linux-$KERNEL_VERSION
