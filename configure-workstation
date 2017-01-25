@@ -5,5 +5,4 @@ xbindkeys
 xscreensaver &
 cd ~/linux/
 ~/Scripts/linux-dev upstream
-~/Scripts/update.sh
 offlineimap -o &
