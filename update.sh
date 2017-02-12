@@ -1,10 +1,10 @@
 #!/bin/sh
 
 if [ -f /etc/fedora-release ]; then
-  dnf -y update
-  dnf -y upgrade
-  dnf clean packages
-  dnf autoremove
+  dnf -v -y update
+  dnf -v -y upgrade
+  dnf -v clean packages
+  dnf -v autoremove
 elif [ -f /etc/debian-release ] || command -v apt-get > /dev/null; then
   apt-get update
   apt-get upgrade -y
