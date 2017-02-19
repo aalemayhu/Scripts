@@ -16,6 +16,7 @@ usage()
   echo "| remove <VERSION> | Clean up a previously installed kernel.         |"
   echo "| checkpatch       | Run checkpatch.pl on *.{c, h} files in dir      |"
   echo "| download         | Download a kernel from https://kernel.org       |"
+  echo "| ToT              | Reset git repository to use origin/master       |"
   echo "|------------------+-------------------------------------------------|"
 }
 
@@ -130,6 +131,11 @@ elif [[ "checkpatch" == $1 ]]; then
   exit
 elif [[ "download" == $1 ]]; then
   download_kernel $2
+  exit
+elif [[ "ToT" == $1 ]]; then
+  git stash
+  git fetch --all
+  git reset --hard origin/master
   exit
 else
   check_for Kconfig
