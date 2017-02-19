@@ -15,6 +15,7 @@ usage()
   echo "| install          | Only install the kernel.                        |"
   echo "| remove <VERSION> | Clean up a previously installed kernel.         |"
   echo "| checkpatch       | Run checkpatch.pl on *.{c, h} files in dir      |"
+  echo "| download         | Download a kernel from https://kernel.org       |"
   echo "|------------------+-------------------------------------------------|"
 }
 
@@ -98,6 +99,22 @@ checkpatch()
   done
 }
 
+download_kernel()
+{
+  version=$1
+  if [[ $version == "" ]]; then
+    echo "please supply a version"
+    exit
+  fi
+
+  download_url="https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$version.tar.xz"
+  if [[ $version == *"rc"* ]]; then
+    download_url="https://cdn.kernel.org/pub/linux/kernel/v4.x/testing/linux-$version.tar.xz"
+  fi
+
+  wget $download_url
+}
+
 if [[ "remove" == $1 ]]; then
   uninstall_kernel $2
 elif [[ "upstream" == $1 ]]; then
@@ -110,6 +127,9 @@ elif [[ "help" == $1 ]] || [[ "?" == $1 ]] ; then
   exit
 elif [[ "checkpatch" == $1 ]]; then
   checkpatch
+  exit
+elif [[ "download" == $1 ]]; then
+  download_kernel $2
   exit
 else
   check_for Kconfig
