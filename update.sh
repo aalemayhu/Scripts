@@ -3,8 +3,8 @@
 if [ -f /etc/fedora-release ]; then
   dnf -v -y update
   dnf -v -y upgrade
-  dnf -v clean packages
-  dnf -v autoremove
+  dnf -v -y clean packages
+  dnf -v -y autoremove
 elif [ -f /etc/debian-release ] || command -v apt-get > /dev/null; then
   apt-get update
   apt-get upgrade -y
