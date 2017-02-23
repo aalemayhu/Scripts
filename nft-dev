@@ -9,7 +9,7 @@ export DB2X_DOCBOOK2MAN=no
 set -x
 set -e
 
-src=~/src/netfilter
+src=~/src/netfilter.org
 mkdir -pv $src
 cd $src
 
