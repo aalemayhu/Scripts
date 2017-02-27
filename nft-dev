@@ -10,7 +10,7 @@ set -x
 set -e
 
 # Try installing the dependencies
-if [[ "d*" == $1 ]]; then
+if [[ "prepare" == $1 ]]; then
   if apt-get update >/dev/null; then
     apt-get -y install docbook2x docbook-utils libgmp-dev libreadline-dev
     apt-get install -y autoconf build-essential gcc make autoconf automake
