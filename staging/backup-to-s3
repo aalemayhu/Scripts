@@ -1,3 +1,8 @@
 #!/bin/bash
 
-/usr/bin/s3cmd sync --exclude .cache --exclude src/ --recursive --preserve $HOME s3://`hostname`
+/usr/bin/s3cmd sync --exclude .dropbox/ \
+  --exclude .local/ \
+  --exclude .cache/ \
+  --exclude src/ \
+  --exclude opt/ \
+  --recursive --preserve $HOME s3://`hostname`
