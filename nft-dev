@@ -29,6 +29,8 @@ cd $src
 for project in libmnl libnftnl nftables
 do
   if [ -d "$src/$project" ]; then
+    git -C $project stash
+    git -C $project checkout master
     git -C $project fetch --all
     git -C $project pull
     cd $project
