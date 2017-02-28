@@ -16,6 +16,9 @@ if [[ "prepare" == $1 ]]; then
     apt-get install -y autoconf build-essential gcc make autoconf automake
     apt-get install -y libjansson-dev pkg-config zlib1g-dev curl libtool
     apt-get install -y docbook2x docbook-utils bison flex
+  else if dnf update >/dev/null; then
+    dnf install -y autogen autoconf automake libtool flex bison libmnl-devel
+    dnf install -y gmp-devel readline-devel libnftnl-devel docbook2X systemd
   else
     echo "Error unsupported"
   fi
