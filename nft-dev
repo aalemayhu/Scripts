@@ -6,9 +6,6 @@ export DOCBOOK2X_MAN=no
 export DOCBOOK2MAN=no
 export DB2X_DOCBOOK2MAN=no
 
-set -x
-set -e
-
 # Try installing the dependencies
 if [[ "prepare" == $1 ]]; then
   if apt-get update >/dev/null; then
@@ -24,6 +21,9 @@ if [[ "prepare" == $1 ]]; then
   fi
   exit
 fi
+
+set -x
+set -e
 
 src=~/src/netfilter.org
 mkdir -pv $src
