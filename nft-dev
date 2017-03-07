@@ -29,7 +29,7 @@ src=~/src/netfilter.org
 mkdir -pv $src
 cd $src
 
-for project in libmnl libnftnl nftables
+for project in libmnl libnftnl nftables iptables
 do
   if [ -d "$src/$project" ]; then
     git -C $project stash
