@@ -6,6 +6,13 @@ export DOCBOOK2X_MAN=no
 export DOCBOOK2MAN=no
 export DB2X_DOCBOOK2MAN=no
 
+do_run() {
+  make clean
+  make
+  sudo make install
+  sudo ldconfig
+}
+
 # Try installing the dependencies
 if [[ "prepare" == $1 ]]; then
   if apt-get update >/dev/null; then
@@ -19,6 +26,9 @@ if [[ "prepare" == $1 ]]; then
   else
     echo "Error unsupported"
   fi
+  exit
+elif [[ "local" == $1 ]]; then
+  do_run
   exit
 fi
 
@@ -44,10 +54,7 @@ do
     else
       ./configure
     fi
-    make clean
-    make
-    sudo make install
-    sudo ldconfig
+    do_run
     cd $src
   else
     git clone git://git.netfilter.org/$project
