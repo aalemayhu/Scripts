@@ -41,6 +41,12 @@ cd $src
 
 for project in libmnl libnftnl nftables iptables
 do
+  # Want to verify what is in use
+  if [[ "show" == $1 ]]; then
+    git -C $project ll
+    continue
+  fi
+
   if [ -d "$src/$project" ]; then
     git -C $project stash
     git -C $project checkout master
