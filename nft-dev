@@ -44,6 +44,7 @@ do
   # Want to verify what is in use
   if [[ "show" == $1 ]]; then
     git -C $project ll
+    git -C $project branch -v -v
     continue
   fi
 
