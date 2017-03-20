@@ -153,6 +153,7 @@ else
 
   if [[ "build" == $1 ]]; then
     echo skipping install
+    exit
   else
     install_kernel
   fi
