@@ -161,4 +161,4 @@ fi
 
 update_grub
 
-echo "Maybe you also want to?\nsudo make headers_install INSTALL_HDR_PATH=/usr"
+echo "Maybe you also want to?\nsudo make headers_install"
