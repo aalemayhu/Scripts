@@ -1,22 +1,24 @@
 #!/bin/bash
 
-git clone https://github.com/01org/thermal_daemon src/github.com/01org/thermal_daemon
-cd src/github.com/01org/thermal_daemon
+thermal_daemon_dir=src/github.com/01org/thermal_daemon
 
-yum install -y automake
-yum install -y gcc
-yum install -y gcc-c++
-yum install -y glib-devel
-yum install -y dbus-glib-devel
-yum install -y libxml2-devel
+if [[ -d "$thermal_daemon_dir" ]]; then
+  git clone https://github.com/01org/thermal_daemon $thermal_daemon_dir
+else
+  git -C $thermal_daemon_dir fetch --all
+fi
+
+cd $thermal_daemon_dir
+
+su -c 'yum install -y automake gcc gcc-c++ glib-devel dbus-glib-devel libxml2-devel'
 
 ./autogen.sh
 ./configure prefix=/usr
 make
-make install
+su -c 'make install'
 
-systemctl start thermald.service
-systemctl status thermald.service
-systemctl stop thermald.service
+su -c 'systemctl start thermald.service'
+su -c 'systemctl status thermald.service'
+su -c 'systemctl stop thermald.service'
 
 # Reference: https://github.com/01org/thermal_daemon
