@@ -18,6 +18,7 @@ usage()
   echo "| download         | Download a kernel from https://kernel.org       |"
   echo "| ToT              | Reset git repository to use origin/master       |"
   echo "| list             | List available kernel versions on kernel.org    |"
+  echo "| export           | Archive ToT                                     |"
   echo "|------------------+-------------------------------------------------|"
 }
 
@@ -140,6 +141,11 @@ elif [[ "ToT" == $1 ]]; then
   exit
 elif [[ "list" == $1 ]]; then
   links -dump https://kernel.org|grep pgp| awk ' { print $1$2" ("$3")" }'
+  exit
+elif [[ "export" == $1 ]]; then
+  path=/usr/src/kernels/scanf/`git describe --tags`
+  mkdir -pv $path
+  git checkout-index -a -f --prefix=$path/
   exit
 else
   check_for Kconfig

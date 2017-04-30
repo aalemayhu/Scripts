@@ -1,5 +1,0 @@
-#!/bin/bash
-
-path=/usr/src/kernels/scanf/`git describe --tags`
-mkdir -pv $path
-git checkout-index -a -f --prefix=$path
