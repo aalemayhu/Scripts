@@ -19,6 +19,7 @@ usage()
   echo "| ToT              | Reset git repository to use origin/master       |"
   echo "| list             | List available kernel versions on kernel.org    |"
   echo "| export           | Archive ToT                                     |"
+  echo "| emaild           | Create emails between HEAD and upstream 	     |"
   echo "|------------------+-------------------------------------------------|"
 }
 
@@ -118,6 +119,18 @@ download_kernel()
   wget $download_url
 }
 
+email_diff_upstream()
+ {
+   PATCHES_DIR=outgoing
+   if ! test -d ${PATCHES_DIR}; then
+     # TODO: --cover-letter option
+     git format-patch -M 'HEAD..upstream/master' -o ${PATCHES_DIR}/;
+   fi
+
+   # TODO: edit step vim $(patches_dir)/0000-*
+   echo "git send-email --to myaddr --suppress-cc=all ${PATCHES_DIR}/*"
+}
+
 if [[ "remove" == $1 ]]; then
   uninstall_kernel $2
 elif [[ "upstream" == $1 ]]; then
@@ -146,6 +159,9 @@ elif [[ "export" == $1 ]]; then
   path=/usr/src/kernels/scanf/`git describe --tags`
   mkdir -pv $path
   git checkout-index -a -f --prefix=$path/
+  exit
+elif [[ "emaild" == $1 ]]; then
+  email_diff_upstream
   exit
 else
   check_for Kconfig
