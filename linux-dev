@@ -124,7 +124,7 @@ email_diff_upstream()
    PATCHES_DIR=outgoing
    if ! test -d ${PATCHES_DIR}; then
      # TODO: --cover-letter option
-     git format-patch -M 'upstream/master..HEAD' -o ${PATCHES_DIR}/;
+     git format-patch -M 'HEAD..upstream/master' -o ${PATCHES_DIR}/;
    fi
 
    # TODO: edit step vim $(patches_dir)/0000-*
