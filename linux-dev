@@ -78,17 +78,6 @@ update_grub()
   fi
 }
 
-upstream_reset()
-{
-  git fetch --all
-  git push --tags
-
-  git stash
-  git checkout master
-  git reset --hard upstream/master
-  git push origin master
-}
-
 checkpatch()
 {
   set +x
@@ -129,6 +118,19 @@ email_diff_upstream()
 
    # TODO: edit step vim $(patches_dir)/0000-*
    echo "git send-email --to myaddr --suppress-cc=all ${PATCHES_DIR}/*"
+}
+
+upstream_reset()
+{
+  git fetch --all
+  git push --tags
+
+  email_diff_upstream
+
+  git stash
+  git checkout master
+  git reset --hard upstream/master
+  git push origin master
 }
 
 if [[ "remove" == $1 ]]; then
