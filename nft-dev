@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -x
+set -e
+
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 export DBLATEX=no
 export DOCBOOK2X_MAN=no
@@ -13,13 +16,20 @@ do_run() {
   sudo ldconfig
 }
 
+apt_depends() {
+    cmd=$1
+    apt-get $cmd -y docbook2x docbook-utils libgmp-dev libreadline-dev \
+    autoconf build-essential gcc make autoconf automake \
+    libjansson-dev pkg-config zlib1g-dev curl libtool \
+    docbook2x docbook-utils bison flex
+}
+
 # Try installing the dependencies
 if [[ "prepare" == $1 ]]; then
   if apt-get update >/dev/null; then
-    apt-get -y install docbook2x docbook-utils libgmp-dev libreadline-dev
-    apt-get install -y autoconf build-essential gcc make autoconf automake
-    apt-get install -y libjansson-dev pkg-config zlib1g-dev curl libtool
-    apt-get install -y docbook2x docbook-utils bison flex
+    # cmd can be used to trim container sizes by removing packages.
+    cmd=${2:-install}
+    apt_depends $cmd
   elif dnf update >/dev/null; then
     dnf install -y autogen autoconf automake libtool flex bison
     dnf install -y gmp-devel readline-devel docbook2X systemd
