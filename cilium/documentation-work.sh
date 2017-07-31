@@ -9,11 +9,22 @@ check_for()
   fi
 }
 
+OUTPUT_DIR=~/src/github.com/scanf/alemayhu.com
+PDF_OUTPUT=c.pdf
+HTML_OUTPUT=cilium-staging
+
 check_for conf.py
 make clean
 
 make latexpdf
-cp `find . -name '*.pdf'` ~/src/github.com/scanf/alemayhu.com/c.pdf
+cp `find . -name '*.pdf'` $OUTPUT_DIR/$PDF_OUTPUT
 
 make html
-rsync -r _build/html/ ~/src/github.com/scanf/alemayhu.com/cilium-staging
+rsync -r _build/html/ $OUTPUT_DIR/$HTML_OUTPUT
+
+echo PDF output can be found at $OUTPUT_DIR/$PDF_OUTPUT
+echo HTML output can be found at $OUTPUT_DIR/$HTML_OUTPUT
+
+echo WEB :
+echo https://alemayhu.com/$PDF_OUTPUT
+echo https://alemayhu.com/$HTML_OUTPUT
