@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export VAGRANT_LOG=debug
+
 EMAIL="`mktemp`.build"
 REV="$(git --no-pager log -1 --pretty='tformat:%h (%s, %ad)' --date=short)"
 SUBJECT="[BUILD]: [cilium]: $REV"
