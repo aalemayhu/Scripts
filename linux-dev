@@ -102,7 +102,7 @@ download_kernel()
 
   download_url="https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$version.tar.xz"
   if [[ $version == *"rc"* ]]; then
-    download_url="https://cdn.kernel.org/pub/linux/kernel/v4.x/testing/linux-$version.tar.xz"
+    download_url="https://git.kernel.org/torvalds/t/linux-$version.tar.gz"
   fi
 
   wget $download_url
