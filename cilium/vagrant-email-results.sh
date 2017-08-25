@@ -4,7 +4,7 @@ export VAGRANT_LOG=debug
 
 EMAIL="`mktemp`.build"
 REV="$(git --no-pager log -1 --pretty='tformat:%h (%s, %ad)' --date=short)"
-SUBJECT="[BUILD]: [cilium]: $REV"
+SUBJECT="[BUILD$2]: [cilium]: $REV"
 DATE="`date`"
 FROM="Alexander Alemayhu <alexander@alemayhu.com>"
 
