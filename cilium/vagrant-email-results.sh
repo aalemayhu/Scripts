@@ -11,6 +11,9 @@ FROM="Alexander Alemayhu <alexander@alemayhu.com>"
 echo "From: $FROM" > $EMAIL
 echo "Date: $DATE" >> $EMAIL
 echo "Subject: $SUBJECT" >> $EMAIL
+
+echo "PWD=`pwd`" >> $EMAIL
+echo "" >> $EMAIL
 echo "" >> $EMAIL
 
 RELOAD=1 ./contrib/vagrant/start.sh >> $EMAIL 2>&1
