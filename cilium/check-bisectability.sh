@@ -4,6 +4,7 @@ src="$1" # upstream/master
 dst="$2" # HEAD
 
 for rev in $(git rev-list $src..$dst); do
+  git stash
   logfile="`mktemp`.build"
   git checkout $rev >> $logfile
   make clean >> $logfile
