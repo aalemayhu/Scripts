@@ -26,6 +26,10 @@ apt_depends() {
 
 # Try installing the dependencies
 if [[ "prepare" == $1 ]]; then
+  if [[ "`whoam`" != "root" ]]; then
+    echo "Error please rerun with root privileges for installing dependencies."
+    exit 1
+  fi
   if apt-get update >/dev/null; then
     # cmd can be used to trim container sizes by removing packages.
     cmd=${2:-install}
