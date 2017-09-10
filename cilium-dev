@@ -10,8 +10,14 @@ run_test() {
   sudo -E env PATH="${PATH}" ./$test_file
 }
 
+draft_weekly_notes() {
+  git log --since="1 week" --author=Alemayhu --pretty=oneline --all
+}
+
 if [[ "$1" == "run_test" ]]; then
   run_test "$2"
 elif [[ "$1" == "run_runtime_tests" ]]; then
   sudo -E env PATH="${PATH}" make -C ${GOPATH}/src/github.com/cilium/cilium runtime-tests
+elif [[ "$1" == "weekly_notes" ]]; then
+  draft_weekly_notes
 fi
