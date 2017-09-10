@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#TODO: merge more of the scripts from cilium/ into this file
+
+cmd="$1"
+
+run_test() {
+  test_file="$1"
+  echo "# Will run test $test_file"
+  sudo -E env PATH="${PATH}" ./$test_file
+}
+
+if [[ "$1" == "run_test" ]]; then
+  run_test "$2"
+elif [[ "$1" == "run_runtime_tests" ]]; then
+  sudo -E env PATH="${PATH}" make -C ${GOPATH}/src/github.com/cilium/cilium runtime-tests
+fi
