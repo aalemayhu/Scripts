@@ -21,7 +21,9 @@ run_bisection () {
   while true; do
     if eval "$checker"; then
       echo `tput setaf 2`GOOD`tput sgr0`:`git ll`
-      break
+      if [ -z "$REVERSE" ]; then
+        break
+      fi
     else
       echo `tput setaf 1`BAD`tput sgr0`:`git ll`
     fi
