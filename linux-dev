@@ -50,6 +50,7 @@ install_kernel()
 {
     sudo make modules_install
     sudo make install
+    sudo make headers_install INSTALL_HDR_PATH=/usr
 }
 
 uninstall_kernel()
@@ -192,5 +193,3 @@ else
 fi
 
 update_grub
-
-echo "Maybe you also want to?\nsudo make headers_install"
