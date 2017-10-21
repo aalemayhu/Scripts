@@ -70,7 +70,15 @@ uninstall_kernel()
 update_grub()
 {
   if [ -f /etc/fedora-release ]; then
-    sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+    local EFI_GRUB_CONFIG=/boot/efi/EFI/fedora/grub.cfg
+    local GRUB_CONFIG=/boot/grub2/grub.cfg
+
+    if [ -f $EFI_GRUB_CONFIG ]; then
+      sudo grub2-mkconfig -o $EFI_GRUB_CONFIG
+    fi
+    if [ -f $GRUB_CONFIG ]; then
+      sudo grub2-mkconfig -o $GRUB_CONFIG
+    fi
   elif [ -f /etc/debian-release ]; then
     sudo update-grub
   else
