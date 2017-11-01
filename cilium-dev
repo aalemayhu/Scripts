@@ -87,6 +87,10 @@ build_docs() {
   PDF_OUTPUT=c.pdf
   HTML_OUTPUT=cilium-staging
 
+  if [ ! -f conf.py ]; then
+    cd Documentation
+  fi
+
   check_for conf.py
   make clean
 
