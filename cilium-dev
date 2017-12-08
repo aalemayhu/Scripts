@@ -100,6 +100,7 @@ build_docs() {
   make html
   rsync -r _build/html/ $OUTPUT_DIR/$HTML_OUTPUT
 
+  #TODO: add support for pull request <cilium-dev documentation pr=1810>?
   echo PDF output can be found at $OUTPUT_DIR/$PDF_OUTPUT
   echo HTML output can be found at $OUTPUT_DIR/$HTML_OUTPUT
 
