@@ -47,9 +47,20 @@ vagrant_email_results() {
     cd $REPO
   fi
 
+  BUILD_LOG="`mktemp`.build.txt"
+  RELOAD=1 ./contrib/vagrant/start.sh >> $BUILD_LOG 2>&1
+  RUN_TEST_SUITE=1 ./contrib/vagrant/start.sh >> $BUILD_LOG 2>&1
+  TEST_STATUS=$([ "$?" == 0 ] && echo "success" || echo "failure")
+
+  if [[ "$2" == "cleanup" ]]; then
+    vagrant destroy -f >> $BUILD_LOG 2>&1
+    cd -
+    rm -rvf $REPO >> $BUILD_LOG 2>&1
+  fi
+
   EMAIL="`mktemp`.email.txt"
   REV="$(git --no-pager log -1 --pretty='tformat:%h (%s, %ad)' --date=short)"
-  SUBJECT="[BUILD$2]: [cilium]: $REV"
+  SUBJECT="BUILD $TEST_STATUS: [cilium]: $REV"
   DATE="`date`"
   FROM="Alexander Alemayhu <alexander@alemayhu.com>"
 
@@ -60,15 +71,7 @@ vagrant_email_results() {
   echo "PWD=`pwd`" >> $EMAIL
   echo "" >> $EMAIL
   echo "" >> $EMAIL
-
-  RELOAD=1 ./contrib/vagrant/start.sh >> $EMAIL 2>&1
-  RUN_TEST_SUITE=1 ./contrib/vagrant/start.sh >> $EMAIL 2>&1
-
-  if [[ "$3" == "cleanup" ]]; then
-    vagrant destroy -f >> $EMAIL 2>&1
-    cd -
-    rm -rvf $REPO >> $EMAIL 2>&1
-  fi
+  cat $BUILD_LOG >> $EMAIL
 
   git send-email --no-validate --to alexander@covalent.io --suppress-cc=all $EMAIL
 }
