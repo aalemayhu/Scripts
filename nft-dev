@@ -74,7 +74,7 @@ do
       ./configure --with-json-parsing
     elif [[ $project == "nftables" ]]
     then
-      ./configure --disable-man-doc
+      ./configure --disable-man-doc --with-json
     else
       ./configure
     fi
