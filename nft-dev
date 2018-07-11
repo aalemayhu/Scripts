@@ -72,6 +72,9 @@ do
     if [[ $project == "libnftnl" ]]
     then
       ./configure --with-json-parsing
+    elif [[ $project == "nftables" ]]
+    then
+      ./configure --disable-man-doc
     else
       ./configure
     fi
