@@ -21,7 +21,7 @@ apt_depends() {
     apt-get $cmd -y docbook2x docbook-utils libgmp-dev libreadline-dev \
     autoconf build-essential gcc make autoconf automake \
     libjansson-dev pkg-config zlib1g-dev curl libtool \
-    docbook2x docbook-utils bison flex
+    docbook2x docbook-utils bison flex asciidoc
 }
 
 # Try installing the dependencies
