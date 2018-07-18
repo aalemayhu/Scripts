@@ -93,11 +93,11 @@ checkpatch()
   set +e
   for file in `find . -name '*.c'`;
   do
-    $HOME/linux/scripts/checkpatch.pl --file --terse $file
+    $HOME/src/kernel.org/davem/net-next/scripts/checkpatch.pl --file --terse $file
   done
   for file in `find . -name '*.h'`;
   do
-    $HOME/linux/scripts/checkpatch.pl --file --terse $file
+    $HOME/src/kernel.org/davem/net-next/scripts/checkpatch.pl --file --terse $file
   done
 }
 
