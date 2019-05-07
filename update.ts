@@ -6,7 +6,7 @@ async function main() {
   if (isFedora) {
     const commands = ['update', 'upgrade', 'clean packages', 'autoremove'];
     for (const cmd of commands) {
-      await Deno.run({args: ['dnf', cmd]});
+      await Deno.run({args: ['dnf', '-y', cmd]});
     }
     return;
   }
