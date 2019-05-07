@@ -9,7 +9,8 @@ async function main() {
       await Deno.run({ args: ["dnf", "-y", cmd] });
     }
     await Deno.run({ args: ["dnf", "-y", "clean", "packages"] });
-    return;
+    console.log('Done');
+    Deno.exit(0);
   }
 
   const isDebian = await exists("/etc/debian-release");
@@ -28,7 +29,8 @@ async function main() {
     await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] });
     await Deno.run({ args: ["sudo", "apt-get", "autoclean"] });
     await Deno.run({ args: ["sudo", "apt-get", "autoremove"] });
-    return;
+    console.log('Done');
+    Deno.exit(0);
   }
 
   console.error("fatal: unsupported system");
