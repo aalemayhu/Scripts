@@ -4,10 +4,11 @@ import { exists } from "https://deno.land/std/fs/mod.ts";
 async function main() {
   const isFedora = await exists("/etc/fedora-release");
   if (isFedora) {
-    const commands = ["update", "upgrade", "clean packages", "autoremove"];
+    const commands = ["update", "upgrade", "autoremove"];
     for (const cmd of commands) {
       await Deno.run({ args: ["dnf", "-y", cmd] });
     }
+    await Deno.run({ args: ["dnf", "-y", "clean", "packages"] });
     return;
   }
 
