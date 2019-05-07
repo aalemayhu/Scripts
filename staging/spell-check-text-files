@@ -1,6 +1,0 @@
-#!/bin/bash
-
-for f in `find . -name '*.txt'`
-do
-  vim $f +:'set spell' +:'1'
-done
