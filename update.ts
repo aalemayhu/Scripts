@@ -16,17 +16,17 @@ async function main() {
 
   if (!isDebian) {
     try {
-      await Deno.run({ args: ["apt-get", "--version"] });
+      await Deno.run({ args: ["sudo", "apt-get", "--version"] });
       hasAptGet = true;
     } catch (error) {}
   }
 
   if (isDebian || hasAptGet) {
-    await Deno.run({ args: ["apt-get", "update"] });
-    await Deno.run({ args: ["apt-get", "upgrade", "-y"] });
-    await Deno.run({ args: ["apt-get", "upgrade", "-y"] });
-    await Deno.run({ args: ["apt-get", "autoclean"] });
-    await Deno.run({ args: ["apt-get", "autoremove"] });
+    await Deno.run({ args: ["sudo", "apt-get", "update"] });
+    await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] });
+    await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] });
+    await Deno.run({ args: ["sudo", "apt-get", "autoclean"] });
+    await Deno.run({ args: ["sudo", "apt-get", "autoremove"] });
     return;
   }
 
