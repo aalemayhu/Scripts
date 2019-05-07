@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ssh -L 5901:localhost:5901 -N -f -l a alemayhu.de

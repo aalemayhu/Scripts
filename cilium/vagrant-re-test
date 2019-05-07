@@ -1,1 +1,0 @@
-RELOAD=1 ./contrib/vagrant/start.sh && RUN_TEST_SUITE=1 ./contrib/vagrant/start.sh

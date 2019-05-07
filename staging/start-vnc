@@ -1,5 +1,0 @@
-#!/bin/bash
-
-vncserver :1 -geometry 1920x1080 -depth 16 -pixelformat rgb565
-
-tail -f $HOME/.vnc/*.log
