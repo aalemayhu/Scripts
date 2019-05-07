@@ -1,7 +1,7 @@
 #!/usr/bin/env deno run --allow-read
 import { exists } from "https://deno.land/std/fs/mod.ts";
 
-async function main() {
+(async () => {
   const isFedora = await exists("/etc/fedora-release");
   if (isFedora) {
     const commands = ["update", "upgrade", "autoremove"];
@@ -35,6 +35,4 @@ async function main() {
 
   console.error("fatal: unsupported system");
   Deno.exit(1);
-}
-
-main();
+})()
