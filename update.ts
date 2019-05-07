@@ -23,8 +23,8 @@ async function main() {
 
   if (isDebian || hasAptGet) {
     await Deno.run({ args: ['apt-get', 'update'] });
-    await Deno.run({ args: ['apt-get', 'upgrade -y'] });
-    await Deno.run({ args: ['apt-get', 'upgrade -y'] });
+    await Deno.run({ args: ['apt-get', 'upgrade', '-y']});
+    await Deno.run({ args: ['apt-get', 'upgrade', '-y']});
     await Deno.run({ args: ['apt-get', 'autoclean'] });
     await Deno.run({ args: ['apt-get', 'autoremove'] });
     return;
