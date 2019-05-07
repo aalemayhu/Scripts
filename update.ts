@@ -6,7 +6,7 @@ import { exists } from "https://deno.land/std/fs/mod.ts";
   if (isFedora) {
     const commands = ["update", "upgrade", "autoremove"];
     for (const cmd of commands) {
-      await Deno.run({ args: ["dnf", "-y", cmd] });
+      await Deno.run({ args: ["dnf", "-y", cmd] }).status();
     }
     await Deno.run({ args: ["dnf", "-y", "clean", "packages"] });
     console.log('Done');
@@ -18,17 +18,17 @@ import { exists } from "https://deno.land/std/fs/mod.ts";
 
   if (!isDebian) {
     try {
-      await Deno.run({ args: ["sudo", "apt-get", "--version", ">", "/dev/null"] });
+      await Deno.run({ args: ["sudo", "apt-get", "--version", ">", "/dev/null"] }).status();
       hasAptGet = true;
     } catch (error) {}
   }
 
   if (isDebian || hasAptGet) {
-    await Deno.run({ args: ["sudo", "apt-get", "update"] });
-    await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] });
-    await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] });
-    await Deno.run({ args: ["sudo", "apt-get", "autoclean"] });
-    await Deno.run({ args: ["sudo", "apt-get", "autoremove"] });
+    await Deno.run({ args: ["sudo", "apt-get", "update"] }).status();
+    await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] }).status();
+    await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] }).status();
+    await Deno.run({ args: ["sudo", "apt-get", "autoclean"] }).status();
+    await Deno.run({ args: ["sudo", "apt-get", "autoremove"] }).status();
     console.log('Done');
     Deno.exit(0);
   }
