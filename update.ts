@@ -8,7 +8,7 @@ import { exists } from "https://deno.land/std/fs/mod.ts";
     for (const cmd of commands) {
       await Deno.run({ args: ["dnf", "-y", cmd] }).status();
     }
-    await Deno.run({ args: ["dnf", "-y", "clean", "packages"] });
+    await Deno.run({ args: ["dnf", "-y", "clean", "packages"] }).status();
     console.log('Done');
     Deno.exit(0);
   }
