@@ -9,7 +9,6 @@ import { exists } from "https://deno.land/std/fs/mod.ts";
       await Deno.run({ args: ["dnf", "-y", cmd] }).status();
     }
     await Deno.run({ args: ["dnf", "-y", "clean", "packages"] }).status();
-    console.log('Done');
     Deno.exit(0);
   }
 
@@ -29,7 +28,6 @@ import { exists } from "https://deno.land/std/fs/mod.ts";
     await Deno.run({ args: ["sudo", "apt-get", "upgrade", "-y"] }).status();
     await Deno.run({ args: ["sudo", "apt-get", "autoclean"] }).status();
     await Deno.run({ args: ["sudo", "apt-get", "autoremove"] }).status();
-    console.log('Done');
     Deno.exit(0);
   }
 
