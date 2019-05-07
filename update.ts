@@ -17,7 +17,7 @@ async function main() {
 
   if (!isDebian) {
     try {
-      await Deno.run({ args: ["sudo", "apt-get", "--version"] });
+      await Deno.run({ args: ["sudo", "apt-get", "--version", ">", "/dev/null"] });
       hasAptGet = true;
     } catch (error) {}
   }
